@@ -143,8 +143,83 @@ let alumnos = [
 // console.log(NotasDeTodos)
 
 // let suma = alumnos.reduce((sumatorio, alumnos) => sumatorio + alumnos.nota , 0 )
-//  let promedio = suma % alumnos.length
+//  let promedio = suma / alumnos.length
 // console.log(promedio)
 
-let NombresAprobados = alumnos.filter(alumnos => alumnos.aprobado === true).map(alumnos => alumnos.nombre)
-console.log(NombresAprobados)
+// let NombresAprobados = alumnos.filter(alumnos => alumnos.aprobado === true).map(alumnos => alumnos.nombre)
+// console.log(NombresAprobados)
+
+// AMENEJO DE OBJETOS
+
+//  let persona ={
+
+//  nombre : "Pablo",
+//  edad : 25,
+//  ciudad: "LaRioja",
+//  saludar: function(){
+//   return `Hola, Soy ${this.nombre}`
+//  }
+//  }
+//  console.log(persona.saludar())
+
+// // accedemos a sus propiedades
+
+// console.log(persona.nombre)
+// console.log(persona.edad)
+// persona.edad= 26;
+// console.log(persona.edad);
+
+// console.log(persona)
+// persona.email = "pablo@mgial.com"
+// console.log(persona)
+
+// let persona= {nombre:"pablo", edad: 25, ciudad:"LaRioja"}
+//  console.log("Datos Persona 1")
+// for(let clave in persona)
+// {
+ 
+//   console.log(`${clave}: ${persona[clave]}`)
+// }
+
+// let persona = {nombre: "pablo", edad: 25, ciudad:"larioja"}
+
+// // sin desestructuracion
+// function saludar(persona)
+// {
+//   return `Hola ${persona.nombre}, tenes ${persona.edad}, años`
+// }
+// console.log(saludar(persona))
+
+// // CON DESESTRUCTURACION - MAS LIMPIO
+
+// function saludar({nombre, edad})
+// {
+//   return ` Hola ${nombre}, tenes ${edad} años`
+// }
+// console.log(saludar(persona), "capo ")
+
+// let frutas = ["manzana", "pera", "uva"]
+// // copia un array
+
+// let copia = [...frutas]
+// console.log(...copia)
+
+// // combinar dos array
+
+// let verduras= ["zanahoria","lechuga"]
+// let alimento = [...frutas, ...verduras]
+// console.log(alimento)
+
+// let persona = {nombre:"pablo", edad: 25, altura: 1.78, color: "negro"}
+
+// let copia = {...persona}
+
+// let personaCompleta = {...persona, ciudad:"LaRioja",email:"pablo@gmail.com"}
+// console.log(personaCompleta)
+
+//FUNCIONES
+
+let numero= [5,3,8,1,9]
+console.log(Math.max(...numero))
+console.log(Math.min(...numero))
+console.log(...numero[0])
