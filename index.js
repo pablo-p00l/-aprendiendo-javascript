@@ -219,7 +219,8 @@ let alumnos = [
 
 //FUNCIONES
 
-let numero= [5,3,8,1,9]
-console.log(Math.max(...numero))
-console.log(Math.min(...numero))
-console.log(...numero[0])
+// let numero= [5,3,8,1,9]
+// console.log(Math.max(...numero))
+// console.log(Math.min(...numero))
+
+
