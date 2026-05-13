@@ -25,3 +25,4 @@ db.socios.aggregate([
 
 // Crear índice
 db.socios.createIndex({ plan: 1 })
+
