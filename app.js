@@ -1,29 +1,44 @@
+const express = require('express')
+const mongoose = require('mongoose')
+const Producto = require('./Producto')
+const app = express()
 
-const express= require ('express');
-const app = express();
-// middlaware para leer jSON
-app.use(express.json());
+app.use(express.json())
 
-//Ruta pricipal
-app.get('/', (req, res) => {
-    res.send('Bienvenido a mi API');
+// Conectar a MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/miTienda')
+  .then(() => console.log('Conectado a MongoDB ✅'))
+  .catch((error) => console.log('Error:', error))
+
+// GET — traer todos los productos
+app.get('/productos', async (req, res) => {
+  const productos = await Producto.find()
+  res.json(productos)
 })
- app.get('/productos', (req, res)=>{
-    const productos = [
-        { id: 1, nombre: 'Producto 1', precio: 100 },
-        { id: 2, nombre: 'Producto 2', precio: 200 },
-        { id: 3, nombre: 'Producto 3', precio: 300 },
-    ];
-    res.json(productos);
- });
 
- //ruta con parametro
- app.get('/productos/:id', (req, res) =>{
+// POST — crear un producto nuevo
+app.post('/productos', async (req, res) => {
+  const producto = new Producto(req.body)
+  await producto.save()
+  res.json({ mensaje: 'Producto creado', producto })
+})
 
-    const id = req.params.id;
-    res.json ({mensaje: `Producto con id ${id}`});
- })
+// PUT — actualizar un producto por ID
+app.put('/productos/:id', async (req, res)=> {
+   const producto = await Producto.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {new: true}
+   )
+   res.json({ mensaje: 'Producto actualizado', producto })
+})
 
- app.listen(3000, () => {
-    console.log("servidor corriendo en http://localhots:3000");
- })
+// DELETE — eliminar un producto por ID
+app.delete('/productos/:id', async (req, res)=> {
+   await Producto.findByIdAndDelete(req.params.id)
+   res.json({mensaje: "Producto eliminado"})
+})
+
+app.listen(3000, () => {
+  console.log('Servidor corriendo en http://localhost:3000')
+})
